@@ -44,46 +44,36 @@ if st.button("Generate Summary & Captions", type="primary"):
     else:
         with st.spinner("Analyzing laboratory data..."):
             try:
-                # Initialize GenAI Client
                 client = genai.Client(api_key=api_key)
-                
-                # Automatically find available model supporting text generation
-                available_models = [
-                    m.name for m in client.models.list() 
-                    if hasattr(m, 'supported_actions') and "generateContent" in m.supported_actions
-                ]
-                
-                # Pick best available model on the account
-                chosen_model = None
-                for preferred in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
-                    for m in available_models:
-                        if preferred in m:
-                            chosen_model = m
-                            break
-                    if chosen_model:
-                        break
-                        
-                if not chosen_model and available_models:
-                    chosen_model = available_models[0]
-                elif not chosen_model:
-                    chosen_model = "gemini-2.0-flash"
-                
                 full_input = f"Data Type: {data_type}\n\nRaw Data:\n{raw_data}"
                 
-                # Call generateContent
-                response = client.models.generate_content(
-                    model=chosen_model,
-                    contents=full_input,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT
-                    )
-                )
+                # List of models to try in order of preference
+                candidate_models = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+                
+                response = None
+                last_error = None
+                
+                # Try each model automatically until one works
+                for model_name in candidate_models:
+                    try:
+                        response = client.models.generate_content(
+                            model=model_name,
+                            contents=full_input,
+                            config=types.GenerateContentConfig(
+                                system_instruction=SYSTEM_PROMPT
+                            )
+                        )
+                        if response and response.text:
+                            break  # Success! Exit loop
+                    except Exception as err:
+                        last_error = err
+                        continue  # Try next model if this one fails
                 
                 st.markdown("---")
-                if response.text:
+                if response and response.text:
                     st.markdown(response.text)
                 else:
-                    st.error("The API returned an empty response.")
+                    st.error(f"❌ Could not connect to API: {str(last_error)}")
                 
             except Exception as e:
-                st.error(f"❌ API Error: {str(e)}")
+                st.error(f"❌ API Client Error: {str(e)}")

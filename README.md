@@ -59,16 +59,16 @@ The central AI feature of LabData Summarizer is an automated scientific interpre
 The user provides:  
 
 Analysis Type  
-+
++  
 Raw Analysis Data or Figure Description
 
 The application sends this information to the AI model, which returns:  
 
 Figure Caption  
 +
-Key Observations
+Key Observations  
 +
-Draft Results Paragraph
+Draft Results Paragraph  
 +
 Limitations
 
@@ -221,41 +221,40 @@ This prevents the API key from being exposed in the public GitHub repository.
 
 **Limitations**  
 LabData Summarizer is an AI-assisted scientific writing tool and does not replace biological or statistical expertise. The quality of the generated output depends on the quality and completeness of the information provided by the user.
-
-The application cannot reliably determine:
-Biological mechanisms not represented in the input
-Pathways that were not provided
-Statistical significance without statistical evidence
-Gene-level interpretations without gene-level data
+  
+The application cannot reliably determine:  
+Biological mechanisms not represented in the input  
+Pathways that were not provided  
+Statistical significance without statistical evidence  
+Gene-level interpretations without gene-level data  
 Experimental validity without appropriate experimental information
-
+  
 AI-generated text should therefore be reviewed by the user before being used in a thesis, scientific report, or publication.
 
 **Future Improvements**  
-Potential future improvements include:
-Direct CSV upload for differential expression results
-Automatic parsing of DESeq2 output files
-Direct visualization upload
-Automatic extraction of gene names and fold changes
-Integration with functional enrichment results
-Export of generated reports as PDF or DOCX files
-User authentication and saved analysis history
+Potential future improvements include:  
+Direct CSV upload for differential expression results  
+Automatic parsing of DESeq2 output files  
+Direct visualization upload  
+Automatic extraction of gene names and fold changes  
+Integration with functional enrichment results  
+Export of generated reports as PDF or DOCX files  
+User authentication and saved analysis history  
 Support for additional bioinformatics analysis types
 
 **Project Summary**  
 LabData Summarizer demonstrates the development of a complete AI-powered application from concept to deployment.
-The project combines:
-
-Python
+The project combines:  
+Python  
 +
-Streamlit
+Streamlit  
 +
-Google Gemini AI
+Google Gemini AI  
 +
-Scientific Prompt Engineering
+Scientific Prompt Engineering  
 +
-GitHub
+GitHub  
 +
-Cloud Deployment
++  Cloud Deployment
 
 The result is a functional application that addresses a real problem encountered by bioinformatics students and researchers, transforming computational analysis outputs into structured scientific communication. 

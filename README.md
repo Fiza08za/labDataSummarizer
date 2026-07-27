@@ -142,21 +142,25 @@ streamlit
 google-genai
 
 **Application Workflow**
-User selects analysis type
-          ↓
-User enters analysis results
-          ↓
-Application validates the input
-          ↓
-Data is sent to the AI model
-          ↓
-AI analyzes the supplied information
-          ↓
-Scientific output is generated
-          ↓
-Figure caption + observations
-+ results paragraph + limitations
-are displayed to the user
+User selects analysis type  
+          ↓  
+          
+User enters analysis results  
+          ↓  
+          
+Application validates the input  
+          ↓  
+          
+Data is sent to the AI model  
+          ↓  
+          
+AI analyzes the supplied information  
+          ↓  
+          
+Scientific output is generated  
+          ↓  
+          
+Figure caption + observations + results paragraph + limitations are displayed to the user
 
 **Screenshots**
 1. Application Interface

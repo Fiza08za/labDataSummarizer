@@ -1,19 +1,21 @@
 import streamlit as st
 from google import genai
+from google.genai import types
 import os
 
-# Page Configuration
+# Page setup
 st.set_page_config(page_title="LabData Summarizer", page_icon="🧬", layout="wide")
 
 st.title("🧬 LabData Summarizer")
-st.subheader("Transform raw bioinformatics & lab outputs into publication-ready captions and reports.")
+st.write("Transform raw bioinformatics & lab outputs into publication-ready captions and reports.")
 
 # Sidebar for API key input
 st.sidebar.header("Settings")
 user_api_key = st.sidebar.text_input("Enter Gemini API Key", type="password")
-api_key = user_api_key or os.environ.get("GEMINI_API_KEY")
 
-# Input selection
+# Determine active API key
+api_key = user_api_key if user_api_key.strip() else os.environ.get("GEMINI_API_KEY")
+
 data_type = st.selectbox(
     "Select your data type:",
     ["Sample-to-Sample Heatmap", "PCA Plot Results", "Volcano Plot / Differential Expression", "General Lab Data Summary"]
@@ -22,7 +24,7 @@ data_type = st.selectbox(
 raw_data = st.text_area(
     "Paste your raw statistical output, top genes, or data description here:",
     height=200,
-    placeholder="e.g., Top DEGs: GAPDH (log2FC=2.5, p=0.001), BRCA1 (log2FC=-3.1, p=0.0001)... or describe your plot clusters."
+    placeholder="e.g., W_1, W_2, W_3 form a tight cluster with low distance values (0-15)..."
 )
 
 # System Prompt definition
@@ -43,25 +45,31 @@ Write a cohesive, academic results paragraph for a thesis or report.
 
 if st.button("Generate Summary & Captions", type="primary"):
     if not api_key:
-        st.error("Please provide a valid Gemini API Key in the sidebar.")
+        st.error("❌ No API Key found! Please paste your key in the sidebar on the left.")
     elif not raw_data.strip():
-        st.warning("Please paste some data or descriptions to analyze.")
+        st.warning("⚠️ Please paste some data or descriptions first.")
     else:
         with st.spinner("Analyzing laboratory data..."):
             try:
                 # Initialize Google GenAI client
                 client = genai.Client(api_key=api_key)
                 
-                full_user_input = f"Data Type: {data_type}\n\nRaw Data/Description:\n{raw_data}"
+                full_input = f"Data Type: {data_type}\n\nRaw Data:\n{raw_data}"
                 
+                # Call Gemini API
                 response = client.models.generate_content(
                     model='gemini-2.5-flash',
-                    contents=full_user_input,
-                    config={'system_instruction': SYSTEM_PROMPT}
+                    contents=full_input,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                    )
                 )
                 
                 st.markdown("---")
-                st.markdown(response.text)
+                if response.text:
+                    st.markdown(response.text)
+                else:
+                    st.error("The API returned an empty response.")
                 
             except Exception as e:
-                st.error(f"Error generating summary: {str(e)}")
+                st.error(f"❌ API Error: {str(e)}")

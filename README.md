@@ -180,12 +180,15 @@ are displayed to the user
 **Screenshots**
 1. Application Interface
 This screenshot shows the main application interface, including the application title, analysis type selection menu, input area, and generation button.
+![LabData Summarizer Interface](interface.png)
 
-2. Analysis Input
+3. Analysis Input
 This screenshot shows the user entering bioinformatics analysis results into the application.
+![LabData Summarizer Interface](input.png)
 
-3. AI-Generated Scientific Summary
+4. AI-Generated Scientific Summary
 This screenshot shows the AI-generated figure caption, key observations, draft results paragraph, and limitations.
+![LabData Summarizer Interface](output.png)
 
 **How to Run the Project Locally**
 The easiest way to use LabData Summarizer is through its publicly deployed web application.

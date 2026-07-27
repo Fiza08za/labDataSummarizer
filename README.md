@@ -27,21 +27,13 @@ The application is designed to assist with scientific communication while ensuri
 
 LabData Summarizer is designed for:
 
-Bioinformatics students
-Life-science students
-Molecular biology researchers
-Laboratory researchers
-Computational biology researchers
-Researchers preparing thesis or report sections
+Bioinformatics students, Life-science students, Molecular biology researchers, Laboratory researchers, Computational biology researchers, Researchers preparing thesis or report sections
 
 **Features**
 1. Analysis Type Selection
 Users can select from four analysis categories:
 
-Sample-to-Sample Heatmap
-PCA Plot Results
-Volcano Plot / Differential Expression
-General Lab Data Summary
+Sample-to-Sample Heatmap, PCA Plot Results, Volcano Plot / Differential Expression, General Lab Data Summary
 
 2. Scientific Figure Caption Generation
 The application converts the supplied analysis information into a formal figure caption suitable for a scientific report or thesis.
@@ -69,11 +61,7 @@ The application is instructed to use only the information supplied by the user.
 
 7. Multiple Bioinformatics Analysis Types
 The application supports common bioinformatics result types, including:
-PCA interpretation
-Heatmap interpretation
-Differential expression analysis summaries
-Volcano plot summaries
-General RNA-seq analysis summaries
+PCA interpretation, Heatmap interpretation, Differential expression analysis summaries, Volcano plot summaries, General RNA-seq analysis summaries
 
 **AI Feature**
 The central AI feature of LabData Summarizer is an automated scientific interpretation and writing assistant.
@@ -92,7 +80,8 @@ Key Observations
 Draft Results Paragraph
 +
 Limitations
-AI System Instructions
+
+**AI System Instructions**
 
 The application uses the following system instructions:
 

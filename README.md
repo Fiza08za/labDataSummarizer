@@ -22,13 +22,13 @@ Limitations regarding conclusions that cannot be made from the available informa
 
 The application is designed to assist with scientific communication while ensuring that the AI does not invent unsupported numerical or biological results.
 
-**Target Users**
+**Target Users**  
 
 LabData Summarizer is designed for:
 
 Bioinformatics students, Life-science students, Molecular biology researchers, Laboratory researchers, Computational biology researchers, Researchers preparing thesis or report sections
 
-**Features**
+**Features**  
 1. Analysis Type Selection: Users can select from four analysis categories:
 Sample-to-Sample Heatmap, PCA Plot Results, Volcano Plot / Differential Expression, General Lab Data Summary
 
@@ -54,7 +54,7 @@ The application is instructed to use only the information supplied by the user.
 7. Multiple Bioinformatics Analysis Types: The application supports common bioinformatics result types, including:
 PCA interpretation, Heatmap interpretation, Differential expression analysis summaries, Volcano plot summaries, General RNA-seq analysis summaries
 
-**AI Feature**
+**AI Feature**  
 The central AI feature of LabData Summarizer is an automated scientific interpretation and writing assistant.
 The user provides:  
 
@@ -161,7 +161,7 @@ Scientific output is generated
           
 Figure caption + observations + results paragraph + limitations are displayed to the user
 
-**Screenshots**
+**Screenshots**  
 1. Application Interface
 This screenshot shows the main application interface, including the application title, analysis type selection menu, input area, and generation button.
 ![LabData Summarizer Interface](interface.png)
@@ -174,7 +174,7 @@ This screenshot shows the user entering bioinformatics analysis results into the
 This screenshot shows the AI-generated figure caption, key observations, draft results paragraph, and limitations.
 ![LabData Summarizer Interface](output.png)
 
-**How to Run the Project Locally**
+**How to Run the Project **  
 The easiest way to use LabData Summarizer is through its publicly deployed web application.
 
 Open the live application URL:
@@ -199,7 +199,7 @@ Limitations of the interpretation
 No local installation or API key entry is required for users of the deployed application.
 
 
-**Deployment**
+**Deployment**  
 The application is deployed using Streamlit Community Cloud.
 
 The deployment process consists of:
@@ -211,7 +211,7 @@ Making the application available through a public URL.
 
 The API key is stored as a deployment secret and is not exposed to application users.
 
-**Security**
+**Security**  
 The Gemini API key is not stored directly in the source code.
 Instead, the application retrieves it from a secure environment variable or Streamlit secret:
 
@@ -219,7 +219,7 @@ api_key = st.secrets["GEMINI_API_KEY"]
 
 This prevents the API key from being exposed in the public GitHub repository.
 
-**Limitations**
+**Limitations**  
 LabData Summarizer is an AI-assisted scientific writing tool and does not replace biological or statistical expertise. The quality of the generated output depends on the quality and completeness of the information provided by the user.
 
 The application cannot reliably determine:
@@ -231,7 +231,7 @@ Experimental validity without appropriate experimental information
 
 AI-generated text should therefore be reviewed by the user before being used in a thesis, scientific report, or publication.
 
-**Future Improvements**
+**Future Improvements**  
 Potential future improvements include:
 Direct CSV upload for differential expression results
 Automatic parsing of DESeq2 output files
@@ -242,7 +242,7 @@ Export of generated reports as PDF or DOCX files
 User authentication and saved analysis history
 Support for additional bioinformatics analysis types
 
-**Project Summary**
+**Project Summary**  
 LabData Summarizer demonstrates the development of a complete AI-powered application from concept to deployment.
 The project combines:
 

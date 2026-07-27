@@ -1,6 +1,5 @@
 import streamlit as st
-from google import genai
-from google.genai import types
+import google.generativeai as genai
 import os
 
 # Page setup
@@ -27,20 +26,14 @@ raw_data = st.text_area(
     placeholder="e.g., W_1, W_2, W_3 form a tight cluster with low distance values (0-15)..."
 )
 
-# System Prompt definition
 SYSTEM_PROMPT = """
 You are an expert bioinformatics assistant and scientific writer.
-Your task is to take raw experimental analysis outputs (e.g., PCA data, DESeq2 results, volcano plots, sample heatmaps) and generate structured, publication-grade report text.
+Your task is to take raw experimental analysis outputs and generate structured, publication-grade report text.
 
 Always format your response using these exact markdown headers:
 1. ### 📝 Figure Caption
-Provide a formal, publication-ready figure legend suitable for a journal paper.
-
 2. ### 🔍 Key Observations
-List 3-4 bullet points summarizing the biological or technical takeaways.
-
 3. ### 📄 Draft Results Paragraph
-Write a cohesive, academic results paragraph for a thesis or report.
 """
 
 if st.button("Generate Summary & Captions", type="primary"):
@@ -51,19 +44,19 @@ if st.button("Generate Summary & Captions", type="primary"):
     else:
         with st.spinner("Analyzing laboratory data..."):
             try:
-                # Initialize Google GenAI client
-                client = genai.Client(api_key=api_key)
+                # Configure API key
+                genai.configure(api_key=api_key)
+                
+                # Initialize standard model with System Instructions
+                model = genai.GenerativeModel(
+                    model_name='gemini-1.5-flash',
+                    system_instruction=SYSTEM_PROMPT
+                )
                 
                 full_input = f"Data Type: {data_type}\n\nRaw Data:\n{raw_data}"
                 
-                # Call Gemini API
-                response = client.models.generate_content(
-                    model='gemini-1.5-flash',
-                    contents=full_input,
-                    config=types.GenerateContentConfig(
-                        system_instruction=SYSTEM_PROMPT,
-                    )
-                )
+                # Generate content
+                response = model.generate_content(full_input)
                 
                 st.markdown("---")
                 if response.text:

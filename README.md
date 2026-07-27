@@ -30,25 +30,18 @@ LabData Summarizer is designed for:
 Bioinformatics students, Life-science students, Molecular biology researchers, Laboratory researchers, Computational biology researchers, Researchers preparing thesis or report sections
 
 **Features**
-1. Analysis Type Selection
-Users can select from four analysis categories:
-
+1. Analysis Type Selection: Users can select from four analysis categories:
 Sample-to-Sample Heatmap, PCA Plot Results, Volcano Plot / Differential Expression, General Lab Data Summary
 
-2. Scientific Figure Caption Generation
-The application converts the supplied analysis information into a formal figure caption suitable for a scientific report or thesis.
+2. Scientific Figure Caption Generation: The application converts the supplied analysis information into a formal figure caption suitable for a scientific report or thesis.
 
-3. Key Observation Extraction
-The AI identifies the major observations from the provided data and presents them in a concise, structured format.
+3. Key Observation Extraction: The AI identifies the major observations from the provided data and presents them in a concise, structured format.
 
-4. Academic Results Paragraph Generation
-The application generates a formal draft results paragraph using the information supplied by the user.
+4. Academic Results Paragraph Generation: The application generates a formal draft results paragraph using the information supplied by the user.
 
-5. Limitations Identification
-The AI identifies information that is missing and explains which biological or statistical conclusions cannot be made from the provided data.
+5. Limitations Identification: The AI identifies information that is missing and explains which biological or statistical conclusions cannot be made from the provided data.
 
-6. Scientific Hallucination Control
-The AI instructions explicitly prohibit the invention of:
+6. Scientific Hallucination Control: The AI instructions explicitly prohibit the invention of:
 Gene names
 Numerical values
 Statistical results
@@ -59,8 +52,7 @@ Biological pathways
 Experimental conclusions
 The application is instructed to use only the information supplied by the user.
 
-7. Multiple Bioinformatics Analysis Types
-The application supports common bioinformatics result types, including:
+7. Multiple Bioinformatics Analysis Types: The application supports common bioinformatics result types, including:
 PCA interpretation, Heatmap interpretation, Differential expression analysis summaries, Volcano plot summaries, General RNA-seq analysis summaries
 
 **AI Feature**

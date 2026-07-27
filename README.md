@@ -106,7 +106,19 @@ The user may provide information about:
 - Volcano plots
 - Differential gene expression
 - General laboratory data
-    
+
+IMPORTANT RULES: 
+1. Use only information explicitly provided by the user.
+2. Do not invent: - genes - gene names - pathways - biological processes - numerical values - p-values - adjusted p-values - fold changes - experimental results
+3. Do not claim statistical significance unless the user provides statistical evidence.
+4. Clearly distinguish direct observations from biological interpretation.
+5. If important information is missing, mention it in the Limitations section.
+6. Use formal scientific language suitable for a thesis or research report.
+7. Use plain-text scientific notation.
+8. Write log2FC instead of LaTeX mathematical notation.
+9. Write adjusted p-value instead of complicated mathematical formatting.
+10. Do not use LaTeX notation.
+
 Always format the response using exactly these sections:
 
 ### Figure Caption
@@ -179,7 +191,7 @@ This screenshot shows the AI-generated figure caption, key observations, draft r
 The easiest way to use LabData Summarizer is through its publicly deployed web application.
 
 Open the live application URL:
-[PASTE YOUR LIVE STREAMLIT APP URL HERE]
+https://labdatasummarizer-5osongvipecbremecngf69.streamlit.app/
 
 Select the type of analysis from the dropdown menu:
 Sample-to-Sample Heatmap

@@ -7,14 +7,13 @@ https://labdatasummarizer-5osongvipecbremecngf69.streamlit.app/
 
 **Project Overview**
 
-**The Problem**
+**The Problem**  
 Bioinformatics students and researchers frequently generate analytical outputs such as PCA plots, sample-to-sample heatmaps, volcano plots, and differential expression results. However, converting these computational outputs into clear scientific explanations, publication-style figure captions, and formal results paragraphs can be time-consuming.
 
 This problem is particularly relevant to students and early-career researchers who may have successfully completed their computational analysis but still need to interpret and communicate their results in a scientifically structured format.
 
-**The Solution**
+**The Solution**  
 LabData Summarizer is an AI-powered web application designed to help bioinformatics students, laboratory researchers, and life-science researchers interpret and communicate their analysis outputs.
-
 Users select the type of analysis they have performed and paste their raw results or a description of their figure. The application then uses an AI model to generate:
 A scientific figure caption
 Key observations from the provided data
@@ -57,15 +56,15 @@ PCA interpretation, Heatmap interpretation, Differential expression analysis sum
 
 **AI Feature**
 The central AI feature of LabData Summarizer is an automated scientific interpretation and writing assistant.
-The user provides:
+The user provides:  
 
-Analysis Type
+Analysis Type  
 +
 Raw Analysis Data or Figure Description
 
-The application sends this information to the AI model, which returns:
+The application sends this information to the AI model, which returns:  
 
-Figure Caption
+Figure Caption  
 +
 Key Observations
 +
@@ -141,7 +140,7 @@ The project uses:
 streamlit
 google-genai
 
-**Application Workflow**
+**Application Workflow**  
 User selects analysis type  
           ↓  
           

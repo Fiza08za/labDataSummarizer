@@ -1,19 +1,19 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import os
 
-# Page setup
 st.set_page_config(page_title="LabData Summarizer", page_icon="🧬", layout="wide")
 
 st.title("🧬 LabData Summarizer")
 st.write("Transform raw bioinformatics & lab outputs into publication-ready captions and reports.")
 
-# Sidebar for API key input
+# Sidebar setup
 st.sidebar.header("Settings")
 user_api_key = st.sidebar.text_input("Enter Gemini API Key", type="password")
 
-# Determine active API key
-api_key = user_api_key if user_api_key.strip() else os.environ.get("GEMINI_API_KEY")
+# Fetch API key
+api_key = user_api_key.strip() if user_api_key.strip() else os.environ.get("GEMINI_API_KEY")
 
 data_type = st.selectbox(
     "Select your data type:",
@@ -44,19 +44,40 @@ if st.button("Generate Summary & Captions", type="primary"):
     else:
         with st.spinner("Analyzing laboratory data..."):
             try:
-                # Configure API key
-                genai.configure(api_key=api_key)
+                # Initialize GenAI Client
+                client = genai.Client(api_key=api_key)
                 
-                # Initialize standard model with System Instructions
-                model = genai.GenerativeModel(
-                    model_name='gemini-1.5-flash',
-                    system_instruction=SYSTEM_PROMPT
-                )
+                # Automatically find available model supporting text generation
+                available_models = [
+                    m.name for m in client.models.list() 
+                    if hasattr(m, 'supported_actions') and "generateContent" in m.supported_actions
+                ]
+                
+                # Pick best available model on the account
+                chosen_model = None
+                for preferred in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+                    for m in available_models:
+                        if preferred in m:
+                            chosen_model = m
+                            break
+                    if chosen_model:
+                        break
+                        
+                if not chosen_model and available_models:
+                    chosen_model = available_models[0]
+                elif not chosen_model:
+                    chosen_model = "gemini-2.0-flash"
                 
                 full_input = f"Data Type: {data_type}\n\nRaw Data:\n{raw_data}"
                 
-                # Generate content
-                response = model.generate_content(full_input)
+                # Call generateContent
+                response = client.models.generate_content(
+                    model=chosen_model,
+                    contents=full_input,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT
+                    )
+                )
                 
                 st.markdown("---")
                 if response.text:
